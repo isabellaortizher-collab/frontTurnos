@@ -19,7 +19,7 @@ export function SucursalesProvider({ children }) {
     try {
       setLoading(true);
       setError(null);
-      const res = await fetch(`${BASE_URL}/sucursales`);
+      const res = await fetch(`${BASE_URL}/sucursales/`);
       if (!res.ok) throw new Error(`Error ${res.status}`);
       const data = await res.json();
       setSucursales(Array.isArray(data) ? data : []);

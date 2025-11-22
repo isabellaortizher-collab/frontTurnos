@@ -12,14 +12,14 @@ export const TurnosProvider = ({ children }) => {
 
   // ---- cargar turnos y sucursales ----
   const fetchTurnos = async () => {
-    const res = await fetch(`${API_URL}/turnos`);
+    const res = await fetch(`${API_URL}/turnos/`);
     if (!res.ok) throw new Error("Error al cargar turnos");
     const data = await res.json();
     setTurnos(Array.isArray(data) ? data : []);
   };
 
   const fetchSucursales = async () => {
-    const res = await fetch(`${API_URL}/sucursales`);
+    const res = await fetch(`${API_URL}/sucursales/`);
     if (!res.ok) throw new Error("Error al cargar sucursales");
     const data = await res.json();
     setSucursales(Array.isArray(data) ? data : []);
@@ -42,7 +42,7 @@ export const TurnosProvider = ({ children }) => {
 
   // ---- Turnos CRUD ----
   const agregarTurno = async (turno) => {
-    const res = await fetch(`${API_URL}/turnos`, {
+    const res = await fetch(`${API_URL}/turnos/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(turno),
@@ -54,7 +54,7 @@ export const TurnosProvider = ({ children }) => {
   };
 
   const eliminarTurno = async (id) => {
-    const res = await fetch(`${API_URL}/turnos/${id}`, { method: "DELETE" });
+    const res = await fetch(`${API_URL}/turnos/${id}/`, { method: "DELETE" });
     if (!res.ok) throw new Error(`Error al eliminar turno (${res.status})`);
     setTurnos((prev) => prev.filter((t) => t.id !== id));
   };
@@ -62,7 +62,7 @@ export const TurnosProvider = ({ children }) => {
   const asignarTurno = async (id, trabajador) => {
     id = Number(id);
     if (!id) throw new Error("ID inválido");
-    const res = await fetch(`${API_URL}/turnos/${id}/asignar`, {
+    const res = await fetch(`${API_URL}/turnos/${id}/asignar/`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ trabajador }),
@@ -75,7 +75,7 @@ export const TurnosProvider = ({ children }) => {
 
   // ---- Sucursales: crear y asignar a turno ----
   const crearSucursal = async ({ nombre, direccion = null, ciudad = null, activa = true }) => {
-    const res = await fetch(`${API_URL}/sucursales`, {
+    const res = await fetch(`${API_URL}/sucursales/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nombre, direccion, ciudad, activa }),
@@ -90,7 +90,7 @@ export const TurnosProvider = ({ children }) => {
     turnoId = Number(turnoId);
     sucursalId = Number(sucursalId);
     if (!turnoId || !sucursalId) throw new Error("IDs inválidos");
-    const res = await fetch(`${API_URL}/turnos/${turnoId}/sucursal`, {
+    const res = await fetch(`${API_URL}/turnos/${turnoId}/sucursal/`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ sucursal_id: sucursalId }),
