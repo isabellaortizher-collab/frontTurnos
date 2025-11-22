@@ -8,7 +8,7 @@ export const TurnosProvider = ({ children }) => {
   const [trabajadores, setTrabajadores] = useState([]);
   const [sucursales, setSucursales] = useState([]);
 
-  const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
+  const API_URL = process.env.REACT_APP_API_URL || "https://backturnos-production-c49a.up.railway.app";
 
   // ---- cargar turnos y sucursales ----
   const fetchTurnos = async () => {
