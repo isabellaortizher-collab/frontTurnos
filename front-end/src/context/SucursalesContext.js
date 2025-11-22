@@ -8,7 +8,7 @@ export const SucursalesContext = createContext({
   error: null,
 });
 
-const BASE_URL = "http://localhost:8000"; 
+const BASE_URL = "https://backturnos-production-c49a.up.railway.app"; 
 
 export function SucursalesProvider({ children }) {
   const [sucursales, setSucursales] = useState([]);
