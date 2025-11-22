@@ -1,5 +1,5 @@
 // src/api.js
-const BASE_URL = "http://localhost:8000"; // ✅ SIN /turnos
+const BASE_URL = "https://backturnos-production-c49a.up.railway.app";  // ✅ SIN /turnos
 
 async function http(method, path, body) {
   const url = `${BASE_URL}${path}`;
